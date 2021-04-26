@@ -5,6 +5,43 @@ A simple utility class that helps you customize your RecyclerView's ItemTouchHel
 ![alt First screenshot](https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619390385.png)
 ![alt Second screenshot](https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619390396.png)
 
+# How to get this project
+**Step 1.** Add the jitpack repository to your ```project build.gradle``` file, like so:
+```
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext {
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+    }
+}
+// Place the jitpack repository inside this, like so:
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+```
+
+**Step 2.** Add the dependency in your ``` module build.gradle ``` file, like so:
+```
+dependencies {
+  implementation 'com.github.kevingermainbusiness:ItemDecorator:1.0.4'
+}
+```
+**That's it!**
+
 ## Usage
 Basic usage is shown below, there's a more elaborate example in the [sample app](https://github.com/kevingermainbusiness/RecyclerViewItemDecorator/tree/master/app) app.
 In this case, if you want to set a default background color,text,icon,text color, icon tint color, as you swipe on each sides:
