@@ -44,15 +44,23 @@ dependencies {
 
 ## Usage
 Basic usage is shown below, there's a more elaborate example in the [sample app](https://github.com/kevingermainbusiness/RecyclerViewItemDecorator/tree/master/app) app.
-In this case, if you want to set a default background color,text,icon,text color, icon tint color, as you swipe on each sides:
+In this case, if you want to set a default background color,text,text color,typeface,icon,icon tint color, as you swipe on each sides:
 ```kotlin
+val colorAlert =
+    ContextCompat.getColor(this@MainActivity, R.color.colorAlert)
+val defaultWhiteColor =
+    ContextCompat.getColor(this@MainActivity, R.color.white)
+
 ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState)
-                    .setDefaultIcon(R.drawable.ic_baseline_delete_24)
-                    .setDefaultText("Delete")
-                    .setDefaultBgColor(ContextCompat.getColor(this, R.color.purple_200))
-                    .setDefaultIconTintColor(ContextCompat.getColor(this, R.color.white))
-                    .setDefaultTextColor(ContextCompat.getColor(this, R.color.white))
-                    .create().decorate()
+    .setDefaultBgColor(colorAlert)
+    .setDefaultIcon(R.drawable.ic_baseline_delete_24)
+    .setDefaultIconTintColor(defaultWhiteColor)
+    .setDefaultText(getString(R.string.action_delete))
+    .setDefaultTypeFace(Typeface.DEFAULT_BOLD)
+    .setDefaultTextColor(defaultWhiteColor)
+    .setDefaultTextSize(size = 16f)
+    .create()
+    .decorate()
 ```
 Or if you just want to specify each values such as background color,text,text color,icon, icon tint color, just as seen above in the screenshots:
 ```kotlin

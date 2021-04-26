@@ -84,10 +84,10 @@ class MainActivity : AppCompatActivity() {
                     .setDefaultTextColor(defaultWhiteColor)
                     .setFromStartToEndIcon(R.drawable.ic_baseline_delete_24)
                     .setFromEndToStartIcon(R.drawable.ic_baseline_done_24)
-                    .setFromStartToEndBgColor(colorAlert)
-                    .setFromEndToStartBgColor(teal200)
                     .setFromStartToEndText(getString(R.string.action_delete))
                     .setFromEndToStartText(getString(R.string.action_add_to_fav))
+                    .setFromStartToEndBgColor(colorAlert)
+                    .setFromEndToStartBgColor(teal200)
                     .create()
                     .decorate()
 
