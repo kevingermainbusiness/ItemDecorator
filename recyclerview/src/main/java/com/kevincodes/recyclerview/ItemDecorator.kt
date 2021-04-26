@@ -189,7 +189,10 @@ data class ItemDecorator(
          *
          * @return This instance of [Builder]
          */
-        fun setIconHorizontalMargin(unit: Int, iconHorizontalMargin: Int): Builder {
+        fun setIconHorizontalMargin(
+            unit: Int = TypedValue.COMPLEX_UNIT_DIP,
+            iconHorizontalMargin: Int
+        ): Builder {
             mDecorator.mDefaultIconHorizontalMargin = TypedValue.applyDimension(
                 unit,
                 iconHorizontalMargin.toFloat(),

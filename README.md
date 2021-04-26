@@ -2,8 +2,8 @@
 # ItemDecorator
 A simple utility class that helps you customize your RecyclerView's ItemTouchHelper.SimpleCallback.onChildDraw behavior
 
-![alt First screenshot](https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619390385.png)
-![alt Second screenshot](https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619390396.png)
+![alt First screenshot](https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619456849.png)
+![alt Second screenshot](https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619456854.png)
 
 # How to get this project
 **Step 1.** Add the jitpack repository to your ```project build.gradle``` file, like so:
@@ -54,33 +54,40 @@ ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState)
                     .setDefaultTextColor(ContextCompat.getColor(this, R.color.white))
                     .create().decorate()
 ```
-Or if you just want to specify each values for the background color,text,icon,text color, icon tint color just as seen above in the screenshots:
+Or if you just want to specify each values such as background color,text,text color,icon, icon tint color, just as seen above in the screenshots:
 ```kotlin
+val colorAlert = ContextCompat.getColor(this@MainActivity, R.color.colorAlert)
+val teal200 = ContextCompat.getColor(this@MainActivity, R.color.teal_200)
+val defaultWhiteColor = ContextCompat.getColor(this@MainActivity, R.color.white)
+                    
 ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState)
+                    .setDefaultIconTintColor(defaultWhiteColor)
+                    .setDefaultTypeFace(Typeface.DEFAULT_BOLD)
+                    .setDefaultTextSize(size = 16f)
+                    .setDefaultTextColor(defaultWhiteColor)
                     .setFromStartToEndIcon(R.drawable.ic_baseline_delete_24)
-                    .setFromEndToStartIcon(R.drawable.ic_baseline_save_alt_24)
-                    .setFromStartToEndText("Delete")
-                    .setFromEndToStartText("Save")
-                    .setFromStartToEndBgColor(ContextCompat.getColor(this, R.color.purple_200))
-                    .setFromEndToStartBgColor(ContextCompat.getColor(this, R.color.teal_200))
-                    .setDefaultIconTintColor(ContextCompat.getColor(this, R.color.white))
-                    .setDefaultTextColor(ContextCompat.getColor(this, R.color.white))
-                    .create().decorate()
+                    .setFromEndToStartIcon(R.drawable.ic_baseline_done_24)
+                    .setFromStartToEndBgColor(colorAlert)
+                    .setFromEndToStartBgColor(teal200)
+                    .setFromStartToEndText(getString(R.string.action_delete))
+                    .setFromEndToStartText(getString(R.string.action_add_to_fav))
+                    .create()
+                    .decorate()
 ```
 
 ### Note
-You can change the default text size of 14sp of the ItemDecorator, by calling the Builder's ```setDefaultTextSize()```method,
-before calling the Builder's ```.create()``` method.
-Here's an example, where you want to change the text size to 18 sp:
+You can change the default icon horizontal margin of 16dp of the ItemDecorator
+by calling the Builder's ```setIconHorizontalMargin()```method before calling the Builder's ```.create()``` method.
+Here's an example, where it is changed to 18 dp:
 ```kotlin
 ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState)
-                    .setDefaultIcon(R.drawable.ic_baseline_delete_24)
-                    .setDefaultText("Delete")
-                    .setDefaultBgColor(ContextCompat.getColor(this, R.color.purple_200))
-                    .setDefaultIconTintColor(ContextCompat.getColor(this, R.color.white))
-                    .setDefaultTextColor(ContextCompat.getColor(this, R.color.white))
-                    .setDefaultTextSize(size = 18f)
-                    .create().decorate()
+    .setDefaultIcon(R.drawable.ic_baseline_delete_24)
+    .setDefaultText("Delete")
+    .setDefaultBgColor(ContextCompat.getColor(this, R.color.purple_200))
+    .setDefaultIconTintColor(ContextCompat.getColor(this, R.color.white))
+    .setDefaultTextColor(ContextCompat.getColor(this, R.color.white))
+    .setIconHorizontalMargin(iconHorizontalMargin = 18)
+    .create().decorate()
 ```
 
 ## License
@@ -109,4 +116,3 @@ SOFTWARE.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
