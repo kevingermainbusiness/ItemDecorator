@@ -43,8 +43,8 @@ dependencies {
 **That's it!**
 
 ## Usage
-Basic usage is shown below, there's a more elaborate example in the [sample app](https://github.com/kevingermainbusiness/ItemDecorator/tree/master/app) app.
-In this case, if you want to set a default background color,text,text color,typeface,icon,icon tint color, as you swipe on each sides:
+Basic usage is shown below, there's a more elaborate example in the [sample app](https://github.com/kevingermainbusiness/ItemDecorator/tree/master/app).
+In this case, if you want to set a default background color,text,text color,text size,typeface,icon,icon tint color, as you swipe on each sides:
 ```kotlin
 val colorAlert =
     ContextCompat.getColor(this@MainActivity, R.color.colorAlert)
@@ -62,25 +62,28 @@ ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState)
     .create()
     .decorate()
 ```
-Or if you just want to specify each values such as background color,text,text color,icon, icon tint color, just as seen above in the screenshots:
+Or if you just want to specify each values such as background color,text,text color,typeface,icon, icon tint color, just as seen above in the screenshots:
 ```kotlin
 val colorAlert = ContextCompat.getColor(this@MainActivity, R.color.colorAlert)
 val teal200 = ContextCompat.getColor(this@MainActivity, R.color.teal_200)
 val defaultWhiteColor = ContextCompat.getColor(this@MainActivity, R.color.white)
-                    
+
 ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState)
-                    .setDefaultIconTintColor(defaultWhiteColor)
-                    .setDefaultTypeFace(Typeface.DEFAULT_BOLD)
-                    .setDefaultTextSize(size = 16f)
-                    .setDefaultTextColor(defaultWhiteColor)
-                    .setFromStartToEndIcon(R.drawable.ic_baseline_delete_24)
-                    .setFromEndToStartIcon(R.drawable.ic_baseline_done_24)
-                    .setFromStartToEndBgColor(colorAlert)
-                    .setFromEndToStartBgColor(teal200)
-                    .setFromStartToEndText(getString(R.string.action_delete))
-                    .setFromEndToStartText(getString(R.string.action_add_to_fav))
-                    .create()
-                    .decorate()
+    .setFromStartToEndIconTint(defaultWhiteColor)
+    .setFromEndToStartIconTint(defaultWhiteColor)
+    .setFromStartToEndTypeface(Typeface.DEFAULT_BOLD)
+    .setFromEndToStartTypeface(Typeface.SANS_SERIF)
+    .setDefaultTextSize(size = 16f)
+    .setFromStartToEndTextColor(defaultWhiteColor)
+    .setFromEndToStartTextColor(defaultWhiteColor)
+    .setFromStartToEndIcon(R.drawable.ic_baseline_delete_24)
+    .setFromEndToStartIcon(R.drawable.ic_baseline_done_24)
+    .setFromStartToEndText(getString(R.string.action_delete))
+    .setFromEndToStartText(getString(R.string.action_add_to_fav))
+    .setFromStartToEndBgColor(colorAlert)
+    .setFromEndToStartBgColor(teal200)
+    .create()
+    .decorate()
 ```
 
 ### Note
