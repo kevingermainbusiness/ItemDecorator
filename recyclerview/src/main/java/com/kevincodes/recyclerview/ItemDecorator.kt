@@ -160,6 +160,18 @@ data class ItemDecorator(
         }
 
         /**
+         * Sets the default typeface of the texts displayed in each side of the canvas
+         * @param typeface, a Typeface )e.g. [Typeface.DEFAULT_BOLD]
+         * @return This instance of [Builder]
+         * @since 1.0.5
+         * */
+        fun setDefaultTypeFace(typeface: Typeface): Builder {
+            mDecorator.mTypefaceFromStartToEnd = typeface
+            mDecorator.mTypefaceFromEndToStart = typeface
+            return this
+        }
+
+        /**
          * Set the horizontal margin of the icon in the given unit (default is 16dp)
          * @param unit TypedValue, the unit to convert from, (e.g.[TypedValue.COMPLEX_UNIT_DIP])
          * @param iconHorizontalMargin the margin in the given unit

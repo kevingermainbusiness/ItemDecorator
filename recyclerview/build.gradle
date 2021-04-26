@@ -13,9 +13,9 @@ afterEvaluate {
                 from components.release
 
                 // You can then customize attributes of the publication as shown below.
-                groupId = 'com.kevincodes.recyclerview'
+                groupId = 'com.github.kevingermainbusiness'
                 artifactId = 'final'
-                version = '1.0.4'
+                version = '1.0.5'
             }
         }
     }
