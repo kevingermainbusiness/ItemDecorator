@@ -88,8 +88,8 @@ ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState)
 
 ### Note
 You can change the default icon horizontal margin of 16dp of the ItemDecorator
-by calling the Builder's ```setIconHorizontalMargin()```method before calling the Builder's ```.create()``` method.
-Here's an example, where it is changed to 18 dp:
+by calling the Builder's ```setIconHorizontalMargin()``` method before calling the Builder's ```.create()``` method.
+Here's an example, where it is changed to 18dp:
 ```kotlin
 ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState)
     .setDefaultIcon(R.drawable.ic_baseline_delete_24)
