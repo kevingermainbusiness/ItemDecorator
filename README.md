@@ -43,7 +43,7 @@ dependencies {
 **That's it!**
 
 ## Usage
-Basic usage is shown below, there's a more elaborate example in the [sample app](https://github.com/kevingermainbusiness/RecyclerViewItemDecorator/tree/master/app) app.
+Basic usage is shown below, there's a more elaborate example in the [sample app](https://github.com/kevingermainbusiness/ItemDecorator/tree/master/app) app.
 In this case, if you want to set a default background color,text,text color,typeface,icon,icon tint color, as you swipe on each sides:
 ```kotlin
 val colorAlert =
