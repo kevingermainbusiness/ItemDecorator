@@ -15,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 
 /**
  * A simple utility class that helps you customize your [RecyclerView]'s
- * [ItemTouchHelper.SimpleCallback.onChildDraw] behavior.
+ * [ItemTouchHelper.SimpleCallback.onChildDraw] behavior,
+ * when [ItemTouchHelper.ACTION_STATE_SWIPE] is triggered.
+ *
  * It lets you add a background, an icon, a text, all of which you can
  * customize to a certain extent, as you swipe from any side of the [ItemTouchHelper].
  * The [ItemDecorator] properties will be provided by the [ItemDecorator.Builder] class.
