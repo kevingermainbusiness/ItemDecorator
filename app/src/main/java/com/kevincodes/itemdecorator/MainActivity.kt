@@ -109,12 +109,12 @@ class MainActivity : AppCompatActivity() {
                     ItemTouchHelper.LEFT -> {
                         displayedList.removeAt(position)
                         binding.myRecyclerView.adapter?.notifyItemRemoved(position)
-                        Log.d("MainActivity", "Removed fruit of id:$id")
+                        Log.d("MainActivity", "Removed history of id:$id")
                     }
                     ItemTouchHelper.RIGHT -> {
                         displayedList.removeAt(position)
                         binding.myRecyclerView.adapter?.notifyItemRemoved(position)
-                        Log.d("MainActivity", "Removed fruit of id:$id")
+                        Log.d("MainActivity", "Removed history of id:$id")
                     }
                 }
                 // Once you have swept all the items, it will re-add them to the RecyclerView again
