@@ -1,6 +1,7 @@
 [![](https://jitpack.io/v/kevingermainbusiness/ItemDecorator.svg)](https://jitpack.io/#kevingermainbusiness/ItemDecorator)
 # ItemDecorator
-A simple utility class that helps you customize your RecyclerView's ItemTouchHelper.SimpleCallback.onChildDraw behavior
+A simple utility class that helps you customize your RecyclerView's ItemTouchHelper.SimpleCallback.onChildDraw behavior, 
+when ItemTouchHelper.ACTION_STATE_SWIPE is triggered.
 
 ![alt First screenshot](https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619456849.png)
 ![alt Second screenshot](https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619456854.png)
