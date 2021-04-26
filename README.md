@@ -1,3 +1,4 @@
+[![](https://jitpack.io/v/kevingermainbusiness/ItemDecorator.svg)](https://jitpack.io/#kevingermainbusiness/ItemDecorator)
 # ItemDecorator
 A simple utility class that helps you customize your RecyclerView's ItemTouchHelper.SimpleCallback.onChildDraw behavior
 
