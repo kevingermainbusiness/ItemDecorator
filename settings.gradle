@@ -1,0 +1,12 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        mavenLocal()
+//        maven { url 'https://jitpack.io' }
+    }
+}
+rootProject.name = "ItemDecorator"
+include ':app'
+include ':recyclerview'

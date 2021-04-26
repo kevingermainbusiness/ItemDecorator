@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Fruits</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_save">Save</string>
+</resources>
