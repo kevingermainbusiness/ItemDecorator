@@ -26,10 +26,12 @@ data class ItemDecorator(
     var dX: Float, var actionState: Int
 ) {
     @ColorInt
-    private var mBgColorFromStartToEnd = 0
+    private var mBgColorFromStartToEnd =
+        ContextCompat.getColor(recyclerView.context, android.R.color.transparent)
 
     @ColorInt
-    private var mBgColorFromEndToStart = 0
+    private var mBgColorFromEndToStart =
+        ContextCompat.getColor(recyclerView.context, android.R.color.transparent)
 
     @ColorInt
     private var mIconTintFromStartToEnd: Int? = null
@@ -93,7 +95,10 @@ data class ItemDecorator(
         private val mDecorator = ItemDecorator(canvas, recyclerView, viewHolder, dX, actionState)
 
         /**
-         * Add a background color to both swiping directions
+         * Changes the default background color to both swiping directions
+         *
+         * By default, the color for both swiping directions, is:
+         * ContextCompat.getColor(recyclerView.context, android.R.color.transparent)
          * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
          * @return This instance of Builder
          */
@@ -104,8 +109,8 @@ data class ItemDecorator(
         }
 
         /**
-         * Add an action icon to both swiping directions
-         * @param resourceId The resource id of the icon to be set
+         * Sets a default icon to both swiping directions
+         * @param resourceId The resource path to get the icon from
          * @return This instance of [Builder]
          */
         fun setDefaultIcon(@DrawableRes resourceId: Int): Builder {
@@ -115,7 +120,7 @@ data class ItemDecorator(
         }
 
         /**
-         * Assigns a default tint color to both icons
+         * Assigns a default tint color to the icons shown in both swiping directions
          * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
          * @return This instance of [Builder]
          * */
@@ -126,7 +131,7 @@ data class ItemDecorator(
         }
 
         /**
-         * Adds a default text for each side of the canvas
+         * Adds a default text for both swiping directions
          * @param text default text for each side of the canvas
          * @return This instance of [Builder]
          * */
@@ -137,7 +142,7 @@ data class ItemDecorator(
         }
 
         /**
-         * Adds a default color for the texts in each side of the canvas
+         * Sets a default color for the texts in both swiping directions
          * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
          * @return This instance of [Builder]
          * */
@@ -148,7 +153,10 @@ data class ItemDecorator(
         }
 
         /**
-         * Sets the size of the text to be shown while swiping in each side of the canvas
+         * Sets the size of the text to be shown in both swiping directions
+         *
+         * By default, the text sizes are 14f, you can change that by calling this method,
+         * and passing your size to the [size] parameter.
          * @param unit the unit to convert from, (e.g. [TypedValue.COMPLEX_UNIT_SP])
          * @param size the size to be set
          * @return This instance of [Builder]
@@ -160,7 +168,10 @@ data class ItemDecorator(
         }
 
         /**
-         * Sets the default typeface of the texts displayed in each side of the canvas
+         * Sets the default typeface for the texts to be shown in both swiping directions
+         *
+         * [Typeface.SANS_SERIF] is set by default, you can change this
+         * by passing your own Typeface to this method's [typeface] parameter
          * @param typeface, a Typeface )e.g. [Typeface.DEFAULT_BOLD]
          * @return This instance of [Builder]
          * @since 1.0.5
@@ -172,7 +183,7 @@ data class ItemDecorator(
         }
 
         /**
-         * Set the horizontal margin of the icon in the given unit (default is 16dp)
+         * Sets the horizontal margin of the icons in the given unit (default is 16dp)
          * @param unit TypedValue, the unit to convert from, (e.g.[TypedValue.COMPLEX_UNIT_DIP])
          * @param iconHorizontalMargin the margin in the given unit
          *
@@ -188,7 +199,7 @@ data class ItemDecorator(
         }
 
         /**
-         * Adds a background color while swiping from start to end
+         * Sets the background color shown while swiping from start to end
          * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
          * @return This instance of [Builder]
          */
@@ -198,7 +209,7 @@ data class ItemDecorator(
         }
 
         /**
-         * Adds a background color while swiping from end to start
+         * Sets the background color shown while swiping from end to start
          * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
          * @return This instance of [Builder]
          */
@@ -208,8 +219,8 @@ data class ItemDecorator(
         }
 
         /**
-         * Add an action icon while swiping from start to end
-         * @param drawableId The resource id of the icon to be set
+         * Defines the icon shown while swiping from start to end
+         * @param drawableId The drawable path of the icon to be set
          * @return This instance of [Builder]
          */
         fun setFromStartToEndIcon(@DrawableRes drawableId: Int): Builder {
@@ -218,8 +229,8 @@ data class ItemDecorator(
         }
 
         /**
-         * Add an action icon while swiping from end to start
-         * @param drawableId The resource id of the icon to be set
+         * Defines the icon shown while swiping from end to start
+         * @param drawableId The drawable path of the icon to be set
          * @return This instance of [Builder]
          */
         fun setFromEndToStartIcon(@DrawableRes drawableId: Int): Builder {
@@ -228,7 +239,7 @@ data class ItemDecorator(
         }
 
         /**
-         * Set the tint color for the action icon shown while swiping from start to end
+         * Sets the tint color for the icon shown while swiping from start to end
          * @param tintColor a color in ARGB format (e.g. 0xFF0000FF for blue)
          * @return This instance of [Builder]
          */
@@ -238,7 +249,7 @@ data class ItemDecorator(
         }
 
         /**
-         * Set the tint color for the action icon shown while swiping from end to start
+         * Set the tint color for the icon shown while swiping from end to start
          * @param tintColor a color in ARGB format (e.g. 0xFF0000FF for blue)
          * @return This instance of [Builder]
          */
@@ -248,7 +259,7 @@ data class ItemDecorator(
         }
 
         /**
-         * Adds a text to be shown while swiping from start to end
+         * Sets the text to be shown while swiping from start to end
          * @param text The string to be shown as text
          * @return This instance of [Builder]
          */
@@ -258,7 +269,7 @@ data class ItemDecorator(
         }
 
         /**
-         * Adds a text to be shown while swiping from end to start
+         * Sets the text to be shown while swiping from end to start
          * @param text The string to be shown as text
          * @return This instance of [Builder]
          */
@@ -278,7 +289,7 @@ data class ItemDecorator(
         }
 
         /**
-         * Set the color of the label to be shown while swiping from end to start
+         * Set the color of the text to be shown while swiping from end to start
          * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
          * @return This instance of [Builder]
          */
@@ -298,7 +309,7 @@ data class ItemDecorator(
         }
 
         /**
-         * Sets the Typeface of the label to be shown while swiping from end to start
+         * Sets the Typeface of the text to be shown while swiping from end to start
          * @param typeface the Typeface to be set (e.g. [Typeface.SANS_SERIF])
          * @return This instance of [Builder]
          */

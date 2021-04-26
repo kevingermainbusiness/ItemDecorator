@@ -1,5 +1,12 @@
 <resources>
-    <string name="app_name">Fruits</string>
+    <string name="app_name">History</string>
     <string name="action_delete">Delete</string>
-    <string name="action_save">Save</string>
+    <string name="action_add_to_fav">Add to favorites</string>
+    <string name="history_amount_converted">Amount Converted</string>
+    <string name="history_obtained_result">Obtained Result</string>
+    <string name="history_based_on_data_from">Based on the rate of the date</string>
+    <string name="history_with_rate_of_the_bank">With rate of the bank </string>
+    <string name="history_conversion_type">Calculated with the </string>
+    <string name="conversion_type">Type of conversion</string>
+
 </resources>

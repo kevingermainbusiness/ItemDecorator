@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorAlert">#F44336</color>
+    <color name="colorPrimary">#1a72e8</color>
+    <color name="colorPrimaryDark">#0048b5</color>
+    <color name="colorAccent">#69a0ff</color>
+    <color name="toolbarBackgroundColor">@android:color/white</color>
+    <color name="toolbarTextColor">#000000</color>
+    <color name="backgroundColor">#fcfcfc</color>
+    <color name="mTextColor">#000000</color>
+    <color name="textColorSecond">#8a000000</color>
 </resources>

@@ -1,33 +1,49 @@
 package com.kevincodes.itemdecorator
 
 import android.graphics.Canvas
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.kevincodes.itemdecorator.databinding.ActivityMainBinding
 import com.kevincodes.recyclerview.ItemDecorator
 
+/**
+ * This is a sample app to make a sample implementation of the [ItemDecorator] class.
+ *
+ * This project displays a list of [History] data in a [RecyclerView].
+ *
+ * After each [ItemTouchHelper.SimpleCallback.onChildDraw] calls,
+ * We'll be calling the [ItemDecorator.decorate] method on each items in the [RecyclerView].
+ * @author Kevin Germain
+ * */
 class MainActivity : AppCompatActivity() {
-    private lateinit var myAdapter: MyAdapter
-    private lateinit var displayedList: MutableList<Fruit>
+    // The adapter of the recyclerView
+    private lateinit var historyAdapter: HistoryAdapter
+
+    // The list to populate in the adapter
+    private lateinit var displayedList: MutableList<History>
+
+    // The class to detect swipe so we can draw the ItemDecoration
     private lateinit var itemTouchHelper: ItemTouchHelper
+
+    // Our activity_main.xml
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initialize()
-    }
-
-    private fun initialize() {
-        myAdapter = MyAdapter()
+        historyAdapter = HistoryAdapter()
         displayedList = arrayListOf()
-        displayedList.addAll(fruits)
-        myAdapter.submitData(displayedList)
-        binding.myRecyclerView.adapter = myAdapter
+        displayedList.addAll(historyList)
+        historyAdapter.submitList(displayedList)
+        binding.myRecyclerView.adapter = historyAdapter
         initializeLogic()
     }
 
@@ -52,23 +68,28 @@ class MainActivity : AppCompatActivity() {
                 actionState: Int,
                 isCurrentlyActive: Boolean
             ) {
-                val purple200 =
-                    ContextCompat.getColor(this@MainActivity, R.color.purple_200)
+
+                val colorAlert =
+                    ContextCompat.getColor(this@MainActivity, R.color.colorAlert)
                 val teal200 =
                     ContextCompat.getColor(this@MainActivity, R.color.teal_200)
                 val defaultWhiteColor =
                     ContextCompat.getColor(this@MainActivity, R.color.white)
 
+                // This is where to start decorating
                 ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState)
-                    .setFromStartToEndIcon(R.drawable.ic_baseline_delete_24)
-                    .setFromEndToStartIcon(R.drawable.ic_baseline_save_alt_24)
-                    .setFromStartToEndText("Delete")
-                    .setFromEndToStartText("Save")
-                    .setFromStartToEndBgColor(purple200)
-                    .setFromEndToStartBgColor(teal200)
                     .setDefaultIconTintColor(defaultWhiteColor)
+                    .setDefaultTypeFace(Typeface.DEFAULT_BOLD)
+                    .setDefaultTextSize(size = 16f)
                     .setDefaultTextColor(defaultWhiteColor)
-                    .create().decorate()
+                    .setFromStartToEndIcon(R.drawable.ic_baseline_delete_24)
+                    .setFromEndToStartIcon(R.drawable.ic_baseline_done_24)
+                    .setFromStartToEndBgColor(colorAlert)
+                    .setFromEndToStartBgColor(teal200)
+                    .setFromStartToEndText(getString(R.string.action_delete))
+                    .setFromEndToStartText(getString(R.string.action_add_to_fav))
+                    .create()
+                    .decorate()
 
                 super.onChildDraw(
                     c,
@@ -84,23 +105,22 @@ class MainActivity : AppCompatActivity() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
                 val id = displayedList[position].id
-                val fruitName = displayedList[position].fruitName
                 when (direction) {
                     ItemTouchHelper.LEFT -> {
                         displayedList.removeAt(position)
                         binding.myRecyclerView.adapter?.notifyItemRemoved(position)
-                        Log.d("MainActivity", "Removed fruit of id:$id with name:$fruitName")
+                        Log.d("MainActivity", "Removed fruit of id:$id")
                     }
                     ItemTouchHelper.RIGHT -> {
                         displayedList.removeAt(position)
                         binding.myRecyclerView.adapter?.notifyItemRemoved(position)
-                        Log.d("MainActivity", "Removed fruit of id:$id with name:$fruitName")
+                        Log.d("MainActivity", "Removed fruit of id:$id")
                     }
                 }
                 // Once you have swept all the items, it will re-add them to the RecyclerView again
                 if (displayedList.isNullOrEmpty()) {
-                    displayedList.addAll(fruits)
-                    binding.myRecyclerView.adapter?.notifyDataSetChanged()
+                    displayedList.addAll(historyList)
+                    historyAdapter.submitList(displayedList)
                 }
             }
         }
