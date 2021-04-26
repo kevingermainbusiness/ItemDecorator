@@ -38,7 +38,7 @@ task clean(type: Delete) {
 **Step 2.** Add the dependency in your ``` module build.gradle ``` file, like so:
 ```
 dependencies {
-  implementation 'com.github.kevingermainbusiness:ItemDecorator:1.0.5'
+  implementation 'com.github.kevingermainbusiness:ItemDecorator:1.0.6'
 }
 ```
 **That's it!**
