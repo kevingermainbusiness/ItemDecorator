@@ -4,7 +4,6 @@ plugins {
     id 'maven-publish'
 }
 
-//group = 'com.github.kevingermainbusiness'
 afterEvaluate {
     publishing {
         publications {
@@ -14,9 +13,9 @@ afterEvaluate {
                 from components.release
 
                 // You can then customize attributes of the publication as shown below.
-                groupId = 'com.github.kevingermainbusiness'
+                groupId = 'com.kevincodes.recyclerview'
                 artifactId = 'final'
-                version = '1.0.3'
+                version = '1.0.4'
             }
         }
     }
