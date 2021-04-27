@@ -8,7 +8,7 @@ when ItemTouchHelper.ACTION_STATE_SWIPE is triggered.
 
 # How to get this project
 **Step 1.** Add the jitpack repository to your ```project build.gradle``` file, like so:
-```
+```groovy
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
@@ -36,9 +36,9 @@ task clean(type: Delete) {
 ```
 
 **Step 2.** Add the dependency in your ``` module build.gradle ``` file, like so:
-```
+```groovy
 dependencies {
-  implementation 'com.github.kevingermainbusiness:ItemDecorator:1.0.6'
+  implementation 'com.github.kevingermainbusiness:ItemDecorator:1.0.7'
 }
 ```
 **That's it!**
@@ -63,7 +63,7 @@ ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState)
     .create()
     .decorate()
 ```
-Or if you just want to specify each values such as background color,text,text color,typeface,icon, icon tint color, just as seen above in the screenshots:
+Or if you just want to specify each values such as background color,text,text color,text size,typeface,icon, icon tint color, just as seen above in the screenshots:
 ```kotlin
 val colorAlert = ContextCompat.getColor(this@MainActivity, R.color.colorAlert)
 val teal200 = ContextCompat.getColor(this@MainActivity, R.color.teal_200)
@@ -74,7 +74,8 @@ ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState)
     .setFromEndToStartIconTint(defaultWhiteColor)
     .setFromStartToEndTypeface(Typeface.DEFAULT_BOLD)
     .setFromEndToStartTypeface(Typeface.SANS_SERIF)
-    .setDefaultTextSize(size = 16f)
+    .setFromStartToEndTextSize(size = 16f)
+    .setFromEndToStartTextSize(size = 16f)
     .setFromStartToEndTextColor(defaultWhiteColor)
     .setFromEndToStartTextColor(defaultWhiteColor)
     .setFromStartToEndIcon(R.drawable.ic_baseline_delete_24)

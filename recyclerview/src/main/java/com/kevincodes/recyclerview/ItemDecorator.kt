@@ -59,9 +59,11 @@ data class ItemDecorator(
     private var mTypefaceFromStartToEnd = Typeface.SANS_SERIF
     private var mTypefaceFromEndToStart = Typeface.SANS_SERIF
 
+    private var mTextSizeFromStartToEnd = 14f
+    private var mTextSizeFromEndToStart = 14f
+
     /* Default values */
     private var mDefaultIconHorizontalMargin = 0
-    private var mDefaultTextSize = 14f
     private var mDefaultTextUnit = TypedValue.COMPLEX_UNIT_SP
 
     init {
@@ -165,7 +167,8 @@ data class ItemDecorator(
          */
         fun setDefaultTextSize(unit: Int = TypedValue.COMPLEX_UNIT_SP, size: Float): Builder {
             mDecorator.mDefaultTextUnit = unit
-            mDecorator.mDefaultTextSize = size
+            mDecorator.mTextSizeFromStartToEnd = size
+            mDecorator.mTextSizeFromEndToStart = size
             return this
         }
 
@@ -304,6 +307,44 @@ data class ItemDecorator(
         }
 
         /**
+         * Sets the size of the text to be shown while swiping from start to end
+         *
+         * By default, the text size is 14f, you can change that by calling this method,
+         * and passing your size to the [size] parameter.
+         * @param unit the unit to convert from, (e.g. [TypedValue.COMPLEX_UNIT_SP])
+         * @param size the size to be set
+         * @since 1.0.7
+         * @return This instance of [Builder]
+         */
+        fun setFromStartToEndTextSize(
+            unit: Int = TypedValue.COMPLEX_UNIT_SP,
+            size: Float
+        ): Builder {
+            mDecorator.mDefaultTextUnit = unit
+            mDecorator.mTextSizeFromStartToEnd = size
+            return this
+        }
+
+        /**
+         * Sets the size of the text to be shown while swiping from end to start
+         *
+         * By default, the text size is 14f, you can change that by calling this method,
+         * and passing your size to the [size] parameter.
+         * @param unit the unit to convert from, (e.g. [TypedValue.COMPLEX_UNIT_SP])
+         * @param size the size to be set
+         * @since 1.0.7
+         * @return This instance of [Builder]
+         */
+        fun setFromEndToStartTextSize(
+            unit: Int = TypedValue.COMPLEX_UNIT_SP,
+            size: Float
+        ): Builder {
+            mDecorator.mDefaultTextUnit = unit
+            mDecorator.mTextSizeFromEndToStart = size
+            return this
+        }
+
+        /**
          * Sets the Typeface of the text to be shown while swiping from start to end
          * @param typeface the Typeface to be set (e.g. [Typeface.SANS_SERIF])
          * @return This instance of [Builder]
@@ -405,7 +446,7 @@ data class ItemDecorator(
                 textPaint.isAntiAlias = true
                 textPaint.textSize = TypedValue.applyDimension(
                     mDefaultTextUnit,
-                    mDefaultTextSize,
+                    mTextSizeFromStartToEnd,
                     recyclerView.context.resources.displayMetrics
                 )
                 textPaint.color = mTextColorFromStartToEnd
@@ -474,7 +515,7 @@ data class ItemDecorator(
                 textPaint.isAntiAlias = true
                 textPaint.textSize = TypedValue.applyDimension(
                     mDefaultTextUnit,
-                    mDefaultTextSize,
+                    mTextSizeFromEndToStart,
                     recyclerView.context.resources.displayMetrics
                 )
                 textPaint.color = mTextColorFromEndToStart
