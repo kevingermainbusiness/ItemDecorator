@@ -41,7 +41,6 @@ data class ItemDecorator(
     @ColorInt
     private var mIconTintFromEndToStart: Int? = null
 
-
     @ColorInt
     private var mTextColorFromStartToEnd = Color.DKGRAY
 
