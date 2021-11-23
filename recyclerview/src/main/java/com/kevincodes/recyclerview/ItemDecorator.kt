@@ -12,7 +12,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-
 /**
  * A simple utility class that helps you customize your [RecyclerView]'s
  * [ItemTouchHelper.SimpleCallback.onChildDraw] behavior,
@@ -86,7 +85,8 @@ data class ItemDecorator(
      * or it was interacted and simply animating to its original position.
      * @param dX The amount of horizontal displacement caused by user's action.
      * @param actionState The type of interaction on the View,
-     * It can either be an ACTION_STATE_DRAG or ACTION_STATE_SWIPE.
+     * It can either be an [ItemTouchHelper.ACTION_STATE_DRAG]
+     * or [ItemTouchHelper.ACTION_STATE_SWIPE].
      * */
     class Builder(
         canvas: Canvas,
@@ -98,12 +98,11 @@ data class ItemDecorator(
         private val mDecorator = ItemDecorator(canvas, recyclerView, viewHolder, dX, actionState)
 
         /**
-         * Changes the default background color to both swiping directions
-         *
+         * Changes the default background color of both swiping directions
          * By default, the color for both swiping directions, is:
          * ContextCompat.getColor(recyclerView.context, android.R.color.transparent)
          * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
-         * @return This instance of Builder
+         * @return This instance of [Builder]
          */
         fun setDefaultBgColor(@ColorInt color: Int): Builder {
             mDecorator.mBgColorFromStartToEnd = color
@@ -112,7 +111,7 @@ data class ItemDecorator(
         }
 
         /**
-         * Sets a default icon to both swiping directions
+         * Sets the icon shown on both swiping directions
          * @param resourceId The resource path to get the icon from
          * @return This instance of [Builder]
          */
