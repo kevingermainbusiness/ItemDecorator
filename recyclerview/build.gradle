@@ -15,7 +15,7 @@ afterEvaluate {
                 // You can then customize attributes of the publication as shown below.
                 groupId = 'com.github.kevingermainbusiness'
                 artifactId = 'final'
-                version = '1.0.9'
+                version = '1.0.10'
             }
         }
     }
@@ -35,7 +35,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
