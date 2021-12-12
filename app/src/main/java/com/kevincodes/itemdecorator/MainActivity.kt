@@ -75,19 +75,18 @@ class MainActivity : AppCompatActivity() {
                     ContextCompat.getColor(this@MainActivity, R.color.white)
 
                 // This is where to start decorating
-                ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState)
-                    .setDefaultIconTintColor(defaultWhiteColor)
-                    .setDefaultTypeFace(Typeface.DEFAULT_BOLD)
-                    .setDefaultTextSize(size = 16f)
-                    .setDefaultTextColor(defaultWhiteColor)
-                    .setFromStartToEndIcon(R.drawable.ic_baseline_delete_24)
-                    .setFromEndToStartIcon(R.drawable.ic_baseline_done_24)
-                    .setFromStartToEndText(getString(R.string.action_delete))
-                    .setFromEndToStartText(getString(R.string.action_add_to_fav))
-                    .setFromStartToEndBgColor(colorAlert)
-                    .setFromEndToStartBgColor(teal200)
-                    .create()
-                    .decorate()
+                ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState).set(
+                    bgColorFromStartToEnd = colorAlert,
+                    bgColorFromEndToStart = teal200,
+                    textFromStartToEnd = getString(R.string.action_delete),
+                    textFromEndToStart = getString(R.string.action_add_to_fav),
+                    textColorFromStartToEnd = defaultWhiteColor,
+                    textColorFromEndToStart = defaultWhiteColor,
+                    iconTintColorFromStartToEnd = defaultWhiteColor,
+                    iconTintColorFromEndToStart = defaultWhiteColor,
+                    iconResIdFromStartToEnd = R.drawable.ic_baseline_delete_24,
+                    iconResIdFromEndToStart = R.drawable.ic_baseline_done_24
+                )
 
                 super.onChildDraw(
                     c,

@@ -35,10 +35,10 @@ data class ItemDecorator(
         ContextCompat.getColor(recyclerView.context, android.R.color.transparent)
 
     @ColorInt
-    private var mIconTintFromStartToEnd: Int? = null
+    private var mIconTintFromStartToEnd: Int = Color.DKGRAY
 
     @ColorInt
-    private var mIconTintFromEndToStart: Int? = null
+    private var mIconTintFromEndToStart: Int = Color.DKGRAY
 
     @ColorInt
     private var mTextColorFromStartToEnd = Color.DKGRAY
@@ -60,17 +60,20 @@ data class ItemDecorator(
     private var mTextSizeFromStartToEnd = 14f
     private var mTextSizeFromEndToStart = 14f
 
-    /* Default values */
-    private var mDefaultIconHorizontalMargin = 0
+    /**
+     * @since 1.0.11
+     * */
+    private var mIconHorizontalMargin = 16f
+
+    private var mIconMarginUnit = TypedValue.COMPLEX_UNIT_DIP
     private var mDefaultTextUnit = TypedValue.COMPLEX_UNIT_SP
 
-    init {
-        mDefaultIconHorizontalMargin = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            16f,
-            recyclerView.context.resources.displayMetrics
-        ).toInt()
-    }
+    /* Default values */
+    private var mCalculatedHorizontalMargin = TypedValue.applyDimension(
+        mIconMarginUnit,
+        mIconHorizontalMargin,
+        recyclerView.context.resources.displayMetrics
+    )
 
     /**
      * Should only be called from a [RecyclerView]'s [ItemTouchHelper.SimpleCallback.onChildDraw]
@@ -104,6 +107,7 @@ data class ItemDecorator(
          * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
          * @return This instance of [Builder]
          */
+        @Deprecated("Use the Builder.set() method instead")
         fun setDefaultBgColor(@ColorInt color: Int): Builder {
             mDecorator.mBgColorFromStartToEnd = color
             mDecorator.mBgColorFromEndToStart = color
@@ -115,6 +119,7 @@ data class ItemDecorator(
          * @param resourceId The resource path to get the icon from
          * @return This instance of [Builder]
          */
+        @Deprecated("Use the Builder.set() method instead")
         fun setDefaultIcon(@DrawableRes resourceId: Int): Builder {
             mDecorator.mIconResIdFromStartToEnd = resourceId
             mDecorator.mIconResIdFromEndToStart = resourceId
@@ -126,6 +131,7 @@ data class ItemDecorator(
          * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
          * @return This instance of [Builder]
          * */
+        @Deprecated("Use the Builder.set() method instead")
         fun setDefaultIconTintColor(@ColorInt color: Int): Builder {
             mDecorator.mIconTintFromStartToEnd = color
             mDecorator.mIconTintFromEndToStart = color
@@ -137,6 +143,7 @@ data class ItemDecorator(
          * @param text default text for each side of the canvas
          * @return This instance of [Builder]
          * */
+        @Deprecated("Use the Builder.set() method instead")
         fun setDefaultText(text: String?): Builder {
             mDecorator.mTextFromStartToEnd = text
             mDecorator.mTextFromEndToStart = text
@@ -148,6 +155,7 @@ data class ItemDecorator(
          * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
          * @return This instance of [Builder]
          * */
+        @Deprecated("Use the Builder.set() method instead")
         fun setDefaultTextColor(@ColorInt color: Int): Builder {
             mDecorator.mTextColorFromStartToEnd = color
             mDecorator.mTextColorFromEndToStart = color
@@ -163,6 +171,7 @@ data class ItemDecorator(
          * @param size the size to be set
          * @return This instance of [Builder]
          */
+        @Deprecated("Use the Builder.set() method instead")
         fun setDefaultTextSize(unit: Int = TypedValue.COMPLEX_UNIT_SP, size: Float): Builder {
             mDecorator.mDefaultTextUnit = unit
             mDecorator.mTextSizeFromStartToEnd = size
@@ -179,6 +188,7 @@ data class ItemDecorator(
          * @return This instance of [Builder]
          * @since 1.0.5
          * */
+        @Deprecated("Use the Builder.set() method instead")
         fun setDefaultTypeFace(typeface: Typeface): Builder {
             mDecorator.mTypefaceFromStartToEnd = typeface
             mDecorator.mTypefaceFromEndToStart = typeface
@@ -189,18 +199,14 @@ data class ItemDecorator(
          * Sets the horizontal margin of the icons in the given unit (default is 16dp)
          * @param unit TypedValue, the unit to convert from, (e.g.[TypedValue.COMPLEX_UNIT_DIP])
          * @param iconHorizontalMargin the margin in the given unit
-         *
          * @return This instance of [Builder]
          */
+        @Deprecated(message = "The margin should be specified in float")
         fun setIconHorizontalMargin(
             unit: Int = TypedValue.COMPLEX_UNIT_DIP,
-            iconHorizontalMargin: Int
+            iconHorizontalMargin: Float
         ): Builder {
-            mDecorator.mDefaultIconHorizontalMargin = TypedValue.applyDimension(
-                unit,
-                iconHorizontalMargin.toFloat(),
-                mDecorator.recyclerView.context.resources.displayMetrics
-            ).toInt()
+            mDecorator.mIconHorizontalMargin = iconHorizontalMargin
             return this
         }
 
@@ -209,6 +215,7 @@ data class ItemDecorator(
          * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
          * @return This instance of [Builder]
          */
+        @Deprecated("Use the Builder.set() method instead")
         fun setFromStartToEndBgColor(@ColorInt color: Int): Builder {
             mDecorator.mBgColorFromStartToEnd = color
             return this
@@ -219,6 +226,7 @@ data class ItemDecorator(
          * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
          * @return This instance of [Builder]
          */
+        @Deprecated("Use the Builder.set() method instead")
         fun setFromEndToStartBgColor(@ColorInt color: Int): Builder {
             mDecorator.mBgColorFromEndToStart = color
             return this
@@ -229,6 +237,7 @@ data class ItemDecorator(
          * @param drawableId The drawable path of the icon to be set
          * @return This instance of [Builder]
          */
+        @Deprecated("Use the Builder.set() method instead")
         fun setFromStartToEndIcon(@DrawableRes drawableId: Int): Builder {
             mDecorator.mIconResIdFromStartToEnd = drawableId
             return this
@@ -239,6 +248,7 @@ data class ItemDecorator(
          * @param drawableId The drawable path of the icon to be set
          * @return This instance of [Builder]
          */
+        @Deprecated("Use the Builder.set() method instead")
         fun setFromEndToStartIcon(@DrawableRes drawableId: Int): Builder {
             mDecorator.mIconResIdFromEndToStart = drawableId
             return this
@@ -249,6 +259,7 @@ data class ItemDecorator(
          * @param tintColor a color in ARGB format (e.g. 0xFF0000FF for blue)
          * @return This instance of [Builder]
          */
+        @Deprecated("Use the Builder.set() method instead")
         fun setFromStartToEndIconTint(@ColorInt tintColor: Int): Builder {
             mDecorator.mIconTintFromStartToEnd = tintColor
             return this
@@ -259,6 +270,7 @@ data class ItemDecorator(
          * @param tintColor a color in ARGB format (e.g. 0xFF0000FF for blue)
          * @return This instance of [Builder]
          */
+        @Deprecated("Use the Builder.set() method instead")
         fun setFromEndToStartIconTint(@ColorInt tintColor: Int): Builder {
             mDecorator.mIconTintFromEndToStart = tintColor
             return this
@@ -269,6 +281,7 @@ data class ItemDecorator(
          * @param text The string to be shown as text
          * @return This instance of [Builder]
          */
+        @Deprecated("Use the Builder.set() method instead")
         fun setFromStartToEndText(text: String?): Builder {
             mDecorator.mTextFromStartToEnd = text
             return this
@@ -279,6 +292,7 @@ data class ItemDecorator(
          * @param text The string to be shown as text
          * @return This instance of [Builder]
          */
+        @Deprecated("Use the Builder.set() method instead")
         fun setFromEndToStartText(text: String?): Builder {
             mDecorator.mTextFromEndToStart = text
             return this
@@ -289,6 +303,7 @@ data class ItemDecorator(
          * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
          * @return This instance of [Builder]
          */
+        @Deprecated("Use the Builder.set() method instead")
         fun setFromStartToEndTextColor(@ColorInt color: Int): Builder {
             mDecorator.mTextColorFromStartToEnd = color
             return this
@@ -299,6 +314,7 @@ data class ItemDecorator(
          * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
          * @return This instance of [Builder]
          */
+        @Deprecated("Use the Builder.set() method instead")
         fun setFromEndToStartTextColor(@ColorInt color: Int): Builder {
             mDecorator.mTextColorFromEndToStart = color
             return this
@@ -314,6 +330,7 @@ data class ItemDecorator(
          * @since 1.0.7
          * @return This instance of [Builder]
          */
+        @Deprecated("Use the Builder.set() method instead")
         fun setFromStartToEndTextSize(
             unit: Int = TypedValue.COMPLEX_UNIT_SP,
             size: Float
@@ -333,6 +350,7 @@ data class ItemDecorator(
          * @since 1.0.7
          * @return This instance of [Builder]
          */
+        @Deprecated("Use the Builder.set() method instead")
         fun setFromEndToStartTextSize(
             unit: Int = TypedValue.COMPLEX_UNIT_SP,
             size: Float
@@ -347,6 +365,7 @@ data class ItemDecorator(
          * @param typeface the Typeface to be set (e.g. [Typeface.SANS_SERIF])
          * @return This instance of [Builder]
          */
+        @Deprecated("Use the Builder.set() method instead")
         fun setFromStartToEndTypeface(typeface: Typeface): Builder {
             mDecorator.mTypefaceFromStartToEnd = typeface
             return this
@@ -357,8 +376,70 @@ data class ItemDecorator(
          * @param typeface the Typeface to be set (e.g. [Typeface.SANS_SERIF])
          * @return This instance of [Builder]
          */
+        @Deprecated("Use the Builder.set() method instead")
         fun setFromEndToStartTypeface(typeface: Typeface): Builder {
             mDecorator.mTypefaceFromEndToStart = typeface
+            return this
+        }
+
+        /**
+         * Groups all previous set methods into one set method
+         * @param bgColorFromStartToEnd The background color seen when you swipe from start to end
+         * @param bgColorFromEndToStart The background color seen when you swipe from end to start
+         * @param iconResIdFromStartToEnd The icon seen when you swipe from start to end
+         * @param iconResIdFromEndToStart The icon seen when you swipe from end to start
+         * @param iconTintColorFromStartToEnd The color of the [iconResIdFromStartToEnd]
+         * @param iconTintColorFromEndToStart The color of the [iconResIdFromEndToStart]
+         * @param textFromStartToEnd The text seen when you swipe from start to end
+         * @param textFromEndToStart The text seen when you swipe from end to start
+         * @param textColorFromStartToEnd The color of the [textFromStartToEnd]
+         * @param textColorFromEndToStart The color of the [textFromEndToStart]
+         * @param textSizeFromStartToEnd The text size of the [textFromStartToEnd]
+         * @param textSizeFromEndToStart The text size of the [textFromEndToStart]
+         * @param typeFaceFromStartToEnd The typeface of the [textFromStartToEnd]
+         * @param typeFaceFromEndToStart The typeface of the [textFromEndToStart]
+         * @param defaultIconMarginUnit The unit in which the icon margins need to be in
+         * @param iconHorizontalMargin The margin of the [iconResIdFromStartToEnd]
+         * and the [iconResIdFromEndToStart]
+         * @since 1.0.11
+         * */
+        fun set(
+            @ColorInt bgColorFromStartToEnd: Int = mDecorator.mBgColorFromStartToEnd,
+            @ColorInt bgColorFromEndToStart: Int = mDecorator.mBgColorFromEndToStart,
+            @DrawableRes iconResIdFromStartToEnd: Int = mDecorator.mIconResIdFromStartToEnd,
+            @DrawableRes iconResIdFromEndToStart: Int = mDecorator.mIconResIdFromEndToStart,
+            @ColorInt iconTintColorFromStartToEnd: Int = mDecorator.mIconTintFromStartToEnd,
+            @ColorInt iconTintColorFromEndToStart: Int = mDecorator.mIconTintFromEndToStart,
+            textFromStartToEnd: String,
+            textFromEndToStart: String,
+            @ColorInt textColorFromStartToEnd: Int = mDecorator.mTextColorFromStartToEnd,
+            @ColorInt textColorFromEndToStart: Int = mDecorator.mTextColorFromEndToStart,
+            textSizeFromStartToEnd: Float = mDecorator.mTextSizeFromStartToEnd,
+            textSizeFromEndToStart: Float = mDecorator.mTextSizeFromEndToStart,
+            typeFaceFromStartToEnd: Typeface = mDecorator.mTypefaceFromStartToEnd,
+            typeFaceFromEndToStart: Typeface = mDecorator.mTypefaceFromEndToStart,
+            defaultTextUnit: Int = TypedValue.COMPLEX_UNIT_SP,
+            defaultIconMarginUnit: Int = mDecorator.mIconMarginUnit,
+            iconHorizontalMargin: Float = mDecorator.mIconHorizontalMargin
+        ): Builder {
+            mDecorator.mBgColorFromStartToEnd = bgColorFromStartToEnd
+            mDecorator.mBgColorFromEndToStart = bgColorFromEndToStart
+            mDecorator.mIconResIdFromStartToEnd = iconResIdFromStartToEnd
+            mDecorator.mIconResIdFromEndToStart = iconResIdFromEndToStart
+            mDecorator.mIconTintFromStartToEnd = iconTintColorFromStartToEnd
+            mDecorator.mIconTintFromEndToStart = iconTintColorFromEndToStart
+            mDecorator.mTextFromStartToEnd = textFromStartToEnd
+            mDecorator.mTextFromEndToStart = textFromEndToStart
+            mDecorator.mDefaultTextUnit = defaultTextUnit
+            mDecorator.mTextSizeFromStartToEnd = textSizeFromStartToEnd
+            mDecorator.mTextSizeFromEndToStart = textSizeFromEndToStart
+            mDecorator.mTextColorFromStartToEnd = textColorFromStartToEnd
+            mDecorator.mTextColorFromEndToStart = textColorFromEndToStart
+            mDecorator.mTypefaceFromStartToEnd = typeFaceFromStartToEnd
+            mDecorator.mTypefaceFromEndToStart = typeFaceFromEndToStart
+            mDecorator.mIconMarginUnit = defaultIconMarginUnit
+            mDecorator.mIconHorizontalMargin = iconHorizontalMargin
+            create().decorate()
             return this
         }
 
@@ -415,7 +496,7 @@ data class ItemDecorator(
         }
         // Draws the icon contextualizing the swipe action
         var iconSize = 0
-        if (mIconResIdFromStartToEnd != 0 && dX > mDefaultIconHorizontalMargin) {
+        if (mIconResIdFromStartToEnd != 0 && dX > mCalculatedHorizontalMargin) {
             val icon = ContextCompat.getDrawable(
                 recyclerView.context, mIconResIdFromStartToEnd
             )
@@ -426,9 +507,9 @@ data class ItemDecorator(
                     viewHolder.itemView.top +
                             ((viewHolder.itemView.bottom - viewHolder.itemView.top) / 2 - halfIcon)
                 it.setBounds(
-                    viewHolder.itemView.left + mDefaultIconHorizontalMargin,
+                    (viewHolder.itemView.left + mCalculatedHorizontalMargin).toInt(),
                     top,
-                    viewHolder.itemView.left + mDefaultIconHorizontalMargin + it.intrinsicWidth,
+                    (viewHolder.itemView.left + mCalculatedHorizontalMargin + it.intrinsicWidth).toInt(),
                     top + iconSize
                 )
                 mIconTintFromStartToEnd?.let { iconTintColor ->
@@ -439,7 +520,7 @@ data class ItemDecorator(
         }
         // Draws the descriptive text contextualizing the swipe action
         mTextFromStartToEnd?.let {
-            if (dX > mDefaultIconHorizontalMargin + iconSize) {
+            if (dX > mCalculatedHorizontalMargin + iconSize) {
                 val textPaint = TextPaint()
                 textPaint.isAntiAlias = true
                 textPaint.textSize = TypedValue.applyDimension(
@@ -453,7 +534,7 @@ data class ItemDecorator(
                     (viewHolder.itemView.top + (viewHolder.itemView.bottom - viewHolder.itemView.top) / 2.0 + textPaint.textSize / 2).toInt()
                 canvas.drawText(
                     it,
-                    viewHolder.itemView.left + mDefaultIconHorizontalMargin + iconSize + (if (iconSize > 0) mDefaultIconHorizontalMargin / 2 else 0).toFloat(),
+                    viewHolder.itemView.left + mCalculatedHorizontalMargin + iconSize + (if (iconSize > 0) mCalculatedHorizontalMargin / 2 else 0).toFloat(),
                     textTop.toFloat(),
                     textPaint
                 )
@@ -483,7 +564,7 @@ data class ItemDecorator(
         // Draws the icon contextualizing the swipe action
         var imgEnd = viewHolder.itemView.right
         var iconSize = 0
-        if (mIconResIdFromEndToStart != 0 && dX < -mDefaultIconHorizontalMargin) {
+        if (mIconResIdFromEndToStart != 0 && dX < -mCalculatedHorizontalMargin) {
             val icon = ContextCompat.getDrawable(
                 recyclerView.context, mIconResIdFromEndToStart
             )
@@ -493,11 +574,12 @@ data class ItemDecorator(
                 val top =
                     viewHolder.itemView.top +
                             ((viewHolder.itemView.bottom - viewHolder.itemView.top) / 2 - halfIcon)
-                imgEnd = viewHolder.itemView.right - mDefaultIconHorizontalMargin - halfIcon * 2
+                imgEnd =
+                    (viewHolder.itemView.right - mCalculatedHorizontalMargin - halfIcon * 2).toInt()
                 it.setBounds(
                     imgEnd,
                     top,
-                    viewHolder.itemView.right - mDefaultIconHorizontalMargin,
+                    (viewHolder.itemView.right - mCalculatedHorizontalMargin).toInt(),
                     top + it.intrinsicHeight
                 )
                 mIconTintFromEndToStart?.let { iconTintColor ->
@@ -508,7 +590,7 @@ data class ItemDecorator(
         }
         // Draws the descriptive text contextualizing the swipe action
         mTextFromEndToStart?.let {
-            if (dX < -mDefaultIconHorizontalMargin - iconSize) {
+            if (dX < -mCalculatedHorizontalMargin - iconSize) {
                 val textPaint = TextPaint()
                 textPaint.isAntiAlias = true
                 textPaint.textSize = TypedValue.applyDimension(
@@ -524,7 +606,7 @@ data class ItemDecorator(
 
                 canvas.drawText(
                     it,
-                    imgEnd - width - if (imgEnd == viewHolder.itemView.right) mDefaultIconHorizontalMargin else mDefaultIconHorizontalMargin / 2,
+                    imgEnd - width - if (imgEnd == viewHolder.itemView.right) mCalculatedHorizontalMargin else mCalculatedHorizontalMargin / 2,
                     textTop.toFloat(),
                     textPaint
                 )

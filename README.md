@@ -1,13 +1,18 @@
 [![](https://jitpack.io/v/kevingermainbusiness/ItemDecorator.svg)](https://jitpack.io/#kevingermainbusiness/ItemDecorator)
+
 # ItemDecorator
-A simple utility class that helps you customize your RecyclerView's ItemTouchHelper.SimpleCallback.onChildDraw behavior, 
-when ItemTouchHelper.ACTION_STATE_SWIPE is triggered.
+
+A simple utility class that helps you customize your RecyclerView's
+ItemTouchHelper.SimpleCallback.onChildDraw behavior, when ItemTouchHelper.ACTION_STATE_SWIPE is
+triggered.
 
 ![alt First screenshot](https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619456849.png)
 ![alt Second screenshot](https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619456854.png)
 
 # How to get this project
+
 **Step 1.** Add the jitpack repository to your ```project build.gradle``` file, like so:
+
 ```groovy
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
@@ -25,7 +30,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter()
         maven { url 'https://jitpack.io' }
     }
 }
@@ -36,75 +40,73 @@ task clean(type: Delete) {
 ```
 
 **Step 2.** Add the dependency in your ``` module build.gradle ``` file, like so:
+
 ```groovy
 dependencies {
-  implementation 'com.github.kevingermainbusiness:ItemDecorator:1.0.7'
+    implementation 'com.github.kevingermainbusiness:ItemDecorator:1.0.11'
 }
 ```
+
 **That's it!**
 
 ## Usage
-Basic usage is shown below, there's a more elaborate example in the [sample app](https://github.com/kevingermainbusiness/ItemDecorator/tree/master/app).
-In this case, if you want to set a default background color,text,text color,text size,typeface,icon,icon tint color, as you swipe on each sides:
-```kotlin
-val colorAlert =
-    ContextCompat.getColor(this@MainActivity, R.color.colorAlert)
-val defaultWhiteColor =
-    ContextCompat.getColor(this@MainActivity, R.color.white)
 
-ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState)
-    .setDefaultBgColor(colorAlert)
-    .setDefaultIcon(R.drawable.ic_baseline_delete_24)
-    .setDefaultIconTintColor(defaultWhiteColor)
-    .setDefaultText(getString(R.string.action_delete))
-    .setDefaultTypeFace(Typeface.DEFAULT_BOLD)
-    .setDefaultTextColor(defaultWhiteColor)
-    .setDefaultTextSize(size = 16f)
-    .create()
-    .decorate()
-```
-Or if you just want to specify each values such as background color,text,text color,text size,typeface,icon, icon tint color, just as seen above in the screenshots:
+Basic usage is shown below, there's a more elaborate example in
+the [sample app](https://github.com/kevingermainbusiness/ItemDecorator/tree/master/app). In this
+case, if you want to set a default background color,text,text color,text size,typeface,icon,icon
+tint color, as you swipe on each sides:
+
 ```kotlin
 val colorAlert = ContextCompat.getColor(this@MainActivity, R.color.colorAlert)
 val teal200 = ContextCompat.getColor(this@MainActivity, R.color.teal_200)
 val defaultWhiteColor = ContextCompat.getColor(this@MainActivity, R.color.white)
 
-ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState)
-    .setFromStartToEndIconTint(defaultWhiteColor)
-    .setFromEndToStartIconTint(defaultWhiteColor)
-    .setFromStartToEndTypeface(Typeface.DEFAULT_BOLD)
-    .setFromEndToStartTypeface(Typeface.SANS_SERIF)
-    .setFromStartToEndTextSize(size = 16f)
-    .setFromEndToStartTextSize(size = 16f)
-    .setFromStartToEndTextColor(defaultWhiteColor)
-    .setFromEndToStartTextColor(defaultWhiteColor)
-    .setFromStartToEndIcon(R.drawable.ic_baseline_delete_24)
-    .setFromEndToStartIcon(R.drawable.ic_baseline_done_24)
-    .setFromStartToEndText(getString(R.string.action_delete))
-    .setFromEndToStartText(getString(R.string.action_add_to_fav))
-    .setFromStartToEndBgColor(colorAlert)
-    .setFromEndToStartBgColor(teal200)
-    .create()
-    .decorate()
+ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState).set(
+    bgColorFromStartToEnd = colorAlert,
+    bgColorFromEndToStart = teal200,
+    textFromStartToEnd = getString(R.string.action_delete),
+    textFromEndToStart = getString(R.string.action_add_to_fav),
+    textColorFromStartToEnd = defaultWhiteColor,
+    textColorFromEndToStart = defaultWhiteColor,
+    iconTintColorFromStartToEnd = defaultWhiteColor,
+    iconTintColorFromEndToStart = defaultWhiteColor,
+    textSizeFromStartToEnd = 16f,
+    textSizeFromEndToStart = 16f,
+    typeFaceFromStartToEnd = Typeface.DEFAULT_BOLD,
+    typeFaceFromEndToStart = Typeface.SANS_SERIF,
+    iconResIdFromStartToEnd = R.drawable.ic_baseline_delete_24,
+    iconResIdFromEndToStart = R.drawable.ic_baseline_done_24
+)
 ```
 
 ### Note
-You can change the default icon horizontal margin of 16dp of the ItemDecorator
-by calling the Builder's ```setIconHorizontalMargin()``` method before calling the Builder's ```.create()``` method.
-Here's an example, where it is changed to 18dp:
-```kotlin
-ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState)
-    .setDefaultIcon(R.drawable.ic_baseline_delete_24)
-    .setDefaultText("Delete")
-    .setDefaultBgColor(ContextCompat.getColor(this, R.color.purple_200))
-    .setDefaultIconTintColor(ContextCompat.getColor(this, R.color.white))
-    .setDefaultTextColor(ContextCompat.getColor(this, R.color.white))
-    .setIconHorizontalMargin(iconHorizontalMargin = 18)
-    .create().decorate()
-```
+
+You can change the default icon horizontal margin of 16dp of the ItemDecorator by passing your
+desired margin for the icons like so:
+
+````kotlin
+val desiredValue = 18f
+ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState).set(
+    iconHorizontalMargin = desiredValue,
+    bgColorFromStartToEnd = colorAlert,
+    bgColorFromEndToStart = teal200,
+    textFromStartToEnd = getString(R.string.action_delete),
+    textFromEndToStart = getString(R.string.action_add_to_fav),
+    textColorFromStartToEnd = defaultWhiteColor,
+    textColorFromEndToStart = defaultWhiteColor,
+    iconTintColorFromStartToEnd = defaultWhiteColor,
+    iconTintColorFromEndToStart = defaultWhiteColor,
+    textSizeFromStartToEnd = 16f,
+    textSizeFromEndToStart = 16f,
+    iconResIdFromStartToEnd = R.drawable.ic_baseline_delete_24,
+    iconResIdFromEndToStart = R.drawable.ic_baseline_done_24
+)
+````
 
 ## License
+
 Licenced under the MIT Licence
+
 ```
 Copyright (c) 2021 Kevin Germain
 
@@ -128,4 +130,6 @@ SOFTWARE.
 ```
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would
+like to change.
