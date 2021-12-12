@@ -43,7 +43,7 @@ task clean(type: Delete) {
 
 ```groovy
 dependencies {
-    implementation 'com.github.kevingermainbusiness:ItemDecorator:1.0.11'
+    implementation 'com.github.kevingermainbusiness:ItemDecorator:1.0.12'
 }
 ```
 
