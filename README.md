@@ -2,7 +2,7 @@
 
 # ItemDecorator
 
-A simple utility class that helps you customize your RecyclerView's
+A utility class that enables you to customize your RecyclerView's
 ItemTouchHelper.SimpleCallback.onChildDraw behavior, when ItemTouchHelper.ACTION_STATE_SWIPE is
 triggered.
 
@@ -43,7 +43,7 @@ task clean(type: Delete) {
 
 ```groovy
 dependencies {
-    implementation 'com.github.kevingermainbusiness:ItemDecorator:1.0.12'
+    implementation 'com.github.kevingermainbusiness:ItemDecorator:1.0.14'
 }
 ```
 
