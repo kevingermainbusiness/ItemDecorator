@@ -76,8 +76,8 @@ class MainActivity : AppCompatActivity() {
 
                 // This is where to start decorating
                 ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState).set(
-                    bgColorFromStartToEnd = colorAlert,
-                    bgColorFromEndToStart = teal200,
+                    backgroundColorFromStartToLeft = colorAlert,
+                    backgroundColorFromEndToStart = teal200,
                     textFromStartToEnd = getString(R.string.action_delete),
                     textFromEndToStart = getString(R.string.action_add_to_fav),
                     textColorFromStartToEnd = defaultWhiteColor,

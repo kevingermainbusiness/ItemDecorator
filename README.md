@@ -62,8 +62,8 @@ val teal200 = ContextCompat.getColor(this@MainActivity, R.color.teal_200)
 val defaultWhiteColor = ContextCompat.getColor(this@MainActivity, R.color.white)
 
 ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState).set(
-    bgColorFromStartToEnd = colorAlert,
-    bgColorFromEndToStart = teal200,
+    backgroundColorFromStartToLeft = colorAlert,
+    backgroundColorFromEndToStart = teal200,
     textFromStartToEnd = getString(R.string.action_delete),
     textFromEndToStart = getString(R.string.action_add_to_fav),
     textColorFromStartToEnd = defaultWhiteColor,
@@ -88,8 +88,8 @@ desired margin for the icons like so:
 val desiredValue = 18f
 ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState).set(
     iconHorizontalMargin = desiredValue,
-    bgColorFromStartToEnd = colorAlert,
-    bgColorFromEndToStart = teal200,
+    backgroundColorFromStartToLeft = colorAlert,
+    backgroundColorFromEndToStart = teal200,
     textFromStartToEnd = getString(R.string.action_delete),
     textFromEndToStart = getString(R.string.action_add_to_fav),
     textColorFromStartToEnd = defaultWhiteColor,

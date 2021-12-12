@@ -384,8 +384,8 @@ data class ItemDecorator(
 
         /**
          * Groups all previous set methods into one set method
-         * @param bgColorFromStartToEnd The background color seen when you swipe from start to end
-         * @param bgColorFromEndToStart The background color seen when you swipe from end to start
+         * @param backgroundColorFromStartToLeft The background color seen when you swipe from start to end
+         * @param backgroundColorFromEndToStart The background color seen when you swipe from end to start
          * @param iconResIdFromStartToEnd The icon seen when you swipe from start to end
          * @param iconResIdFromEndToStart The icon seen when you swipe from end to start
          * @param iconTintColorFromStartToEnd The color of the [iconResIdFromStartToEnd]
@@ -404,8 +404,8 @@ data class ItemDecorator(
          * @since 1.0.11
          * */
         fun set(
-            @ColorInt bgColorFromStartToEnd: Int = mDecorator.mBgColorFromStartToEnd,
-            @ColorInt bgColorFromEndToStart: Int = mDecorator.mBgColorFromEndToStart,
+            @ColorInt backgroundColorFromStartToLeft: Int = mDecorator.mBgColorFromStartToEnd,
+            @ColorInt backgroundColorFromEndToStart: Int = mDecorator.mBgColorFromEndToStart,
             @DrawableRes iconResIdFromStartToEnd: Int = mDecorator.mIconResIdFromStartToEnd,
             @DrawableRes iconResIdFromEndToStart: Int = mDecorator.mIconResIdFromEndToStart,
             @ColorInt iconTintColorFromStartToEnd: Int = mDecorator.mIconTintFromStartToEnd,
@@ -422,8 +422,8 @@ data class ItemDecorator(
             defaultIconMarginUnit: Int = mDecorator.mIconMarginUnit,
             iconHorizontalMargin: Float = mDecorator.mIconHorizontalMargin
         ): Builder {
-            mDecorator.mBgColorFromStartToEnd = bgColorFromStartToEnd
-            mDecorator.mBgColorFromEndToStart = bgColorFromEndToStart
+            mDecorator.mBgColorFromStartToEnd = backgroundColorFromStartToLeft
+            mDecorator.mBgColorFromEndToStart = backgroundColorFromEndToStart
             mDecorator.mIconResIdFromStartToEnd = iconResIdFromStartToEnd
             mDecorator.mIconResIdFromEndToStart = iconResIdFromEndToStart
             mDecorator.mIconTintFromStartToEnd = iconTintColorFromStartToEnd
