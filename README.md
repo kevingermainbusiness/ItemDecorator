@@ -9,33 +9,17 @@ triggered.
 ![alt First screenshot](https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619456849.png)
 ![alt Second screenshot](https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619456854.png)
 
-# How to get this project
+# How to get this library in your android app
 
-**Step 1.** Add the jitpack repository to your ```project build.gradle``` file, like so:
+**Step 1.** Add the jitpack repository to the ``repositories { }``  function, inside
+your ``project build.gradle`` or your ``settings.gradle`` like so:
 
 ```groovy
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-buildscript {
-    ext {
-    }
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-    }
-}
-// Place the jitpack repository inside this, like so:
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url 'https://jitpack.io' }
-    }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
+repositories {
+    google()
+    mavenCentral()
+    // Place the jitpack repository inside this, like so:
+    maven { url 'https://jitpack.io' }
 }
 ```
 
