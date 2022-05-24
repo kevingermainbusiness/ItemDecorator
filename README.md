@@ -10,14 +10,12 @@ triggered.
   <tr>
     <td>Left swipe</td>
      <td>Right swipe</td>
-
-[comment]: <> (    <td>Gif demonstration</td>)
+    <td>Gif demonstration</td>
   </tr>
   <tr>
     <td valign="top"><img src="https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619456849.png" alt="Demonstration 1" width="100%" height="auto"/></td>
     <td valign="top"><img src="https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619456854.png" alt="Demonstration 2" width="100%" height="auto"/></td>
-
-[comment]: <> (    <td valign="top"><img src="" alt="Demonstration 2" width="100%" height="auto"/></td>)
+<td valign="top"><img src="https://user-images.githubusercontent.com/67168053/170080779-9e942656-a008-4b6b-8cf1-bbf15fd15880.gif" alt="Demonstration 2" width="100%" height="auto"/></td>
   </tr>
  </table>
 
