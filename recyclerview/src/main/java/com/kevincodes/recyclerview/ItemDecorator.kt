@@ -512,9 +512,7 @@ data class ItemDecorator(
                     (viewHolder.itemView.left + mCalculatedHorizontalMargin + it.intrinsicWidth).toInt(),
                     top + iconSize
                 )
-                mIconTintFromStartToEnd?.let { iconTintColor ->
-                    it.colorFilter(iconTintColor)
-                }
+                it.colorFilter(mIconTintFromStartToEnd)
                 it.draw(canvas)
             }
         }
@@ -582,9 +580,7 @@ data class ItemDecorator(
                     (viewHolder.itemView.right - mCalculatedHorizontalMargin).toInt(),
                     top + it.intrinsicHeight
                 )
-                mIconTintFromEndToStart?.let { iconTintColor ->
-                    it.colorFilter(iconTintColor)
-                }
+                it.colorFilter(mIconTintFromEndToStart)
                 it.draw(canvas)
             }
         }

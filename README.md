@@ -27,7 +27,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation 'com.github.kevingermainbusiness:ItemDecorator:1.0.14'
+    implementation 'com.github.kevingermainbusiness:ItemDecorator:1.0.15'
 }
 ```
 
@@ -92,7 +92,7 @@ ItemDecorator.Builder(c, recyclerView, viewHolder, dX, actionState).set(
 Licenced under the MIT Licence
 
 ```
-Copyright (c) 2021 Kevin Germain
+Copyright (c) 2022 Kevin Germain
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
