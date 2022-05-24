@@ -6,8 +6,20 @@ A utility class that enables you to customize your RecyclerView's
 ItemTouchHelper.SimpleCallback.onChildDraw behavior, when ItemTouchHelper.ACTION_STATE_SWIPE is
 triggered.
 
-![alt First screenshot](https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619456849.png)
-![alt Second screenshot](https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619456854.png)
+<table>
+  <tr>
+    <td>Left swipe</td>
+     <td>Right swipe</td>
+
+[comment]: <> (    <td>Gif demonstration</td>)
+  </tr>
+  <tr>
+    <td valign="top"><img src="https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619456849.png" alt="Demonstration 1" width="100%" height="auto"/></td>
+    <td valign="top"><img src="https://github.com/kevingermainbusiness/ItemDecorator/blob/master/screenshots/Screenshot_1619456854.png" alt="Demonstration 2" width="100%" height="auto"/></td>
+
+[comment]: <> (    <td valign="top"><img src="" alt="Demonstration 2" width="100%" height="auto"/></td>)
+  </tr>
+ </table>
 
 # How to get this library in your android app
 
