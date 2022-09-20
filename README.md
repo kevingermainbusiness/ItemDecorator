@@ -39,7 +39,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation 'com.github.kevingermainbusiness:ItemDecorator:1.0.15'
+    implementation "com.github.kevingermainbusiness:ItemDecorator:1.0.16"
 }
 ```
 

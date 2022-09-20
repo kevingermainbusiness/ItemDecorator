@@ -39,7 +39,6 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:textAlignment="viewEnd"
-                android:textColor="@color/mTextColor"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
